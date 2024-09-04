@@ -1,0 +1,102 @@
+/* Reset some basic styles */
+body, h1, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set up basic body and font styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation styles */
+header {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav ul li a.login {
+    border: 1px solid #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Highlight the active menu item */
+nav ul li.active a {
+    background-color: #e0e0e0; /* Light grey background for the active item */
+    border-radius: 5px; /* Optional: adds rounded corners to the highlighted item */
+}
+
+/* Adjust spacing around the logo */
+nav ul .logo {
+    flex-grow: 0; 
+    margin: 0 20px;
+    text-align: center;
+}
+
+nav ul .logo img {
+    max-height: 50px; /* Adjust this height as needed */
+}
+
+/* Hero section styles */
+.hero {
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-text {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-family: Cambria, serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.hero-text .button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+}
