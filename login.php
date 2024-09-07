@@ -74,7 +74,7 @@ $conn->close();
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Attractions</a></li>
-                <li class="logo"><a href="#"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
+                <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="#">Lodging</a></li>
                 <li><a href="#">Contact Us</a></li>
                 <li><a href="#">My Reservations</a></li>
@@ -99,7 +99,7 @@ $conn->close();
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="button">Login</button>
-                <p>Don't have an account? <a href="register.php">Register here</a></p>
+                <p>Don't have an account? <a href="registration.html">Register here</a></p>
             </form>
         </div>
     </section>
