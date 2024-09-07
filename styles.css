@@ -100,3 +100,123 @@ nav ul .logo img {
     font-weight: bold;
     border-radius: 5px;
 }
+
+
+/* CSS for the login page */
+
+/* Login section styles */
+.login-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h1 {
+    font-family: Cambria, serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.login-container .form-group {
+    margin-bottom: 20px;
+}
+
+.login-container .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.login-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-container .button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/*CSS for the registration page */
+.register-section {
+    min-height: 100vh;  /* Ensure it takes the full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+}
+
+.register-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    max-width: 900px;  /* Increased the width of the container */
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;  /* Added margin to prevent overlapping with the nav */
+    margin-bottom: 50px;  /* Optional, if you need some space at the bottom */
+}
+
+.register-container h1 {
+    font-family: Cambria, serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.register-container .form-group {
+    margin-bottom: 15px;  /* Reduced margin to decrease overall height */
+}
+
+.register-container .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.register-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.register-container .button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
