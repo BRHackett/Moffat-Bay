@@ -99,7 +99,7 @@ $conn->close();
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="button">Login</button>
-                <p>Don't have an account? <a href="registration.html">Register here</a></p>
+                <p>Don't have an account? <a href="registration.php">Register here</a></p>
             </form>
         </div>
     </section>

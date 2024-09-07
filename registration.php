@@ -81,7 +81,7 @@ $conn->close();
                 <li><a href="#">Lodging</a></li>
                 <li><a href="#">Contact Us</a></li>
                 <li><a href="#">My Reservations</a></li>
-                <li class="active"><a href="login.html" class="login">Login / Register</a></li>
+                <li class="active"><a href="login.php" class="login">Login / Register</a></li>
             </ul>
         </nav>
     </header>
