@@ -207,7 +207,7 @@ $conn->close();
           <input type="password" id="cpassword" name="cpassword"required>
           <input type="checkbox" onclick="toggleCpaswd()">Show Password:<br><br>
           </label>
-                <button type="submit" class="button">Register</button>
+                <button type="submit" class="button">Register Now</button>
             </form>
         </div>
     </section>
