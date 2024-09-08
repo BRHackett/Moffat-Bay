@@ -193,13 +193,20 @@ $conn->close();
                     <input type="text" id="country" name="country" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Create Username:</label>
                     <input type="text" id="username" name="username" required pattern=".{6,}" title="Username must be at least 6 characters long">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Create Password:</label>
                     <input type="password" id="password" name="password" required title="Password must be at least 8 characters long and include at least 1 number">
                 </div>
+                <label>
+          Confirm Password:
+          </label>
+          <label>
+          <input type="password" id="cpassword" name="cpassword"required>
+          <input type="checkbox" onclick="toggleCpaswd()">Show Password:<br><br>
+          </label>
                 <button type="submit" class="button">Register</button>
             </form>
         </div>
