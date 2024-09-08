@@ -105,31 +105,31 @@ $conn->close();
             <?php endif; ?>
             <form action="registration.php" method="POST" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label for="first_name">First Name</label>
+                    <label for="first_name">First Name:</label>
                     <input type="text" id="first_name" name="first_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Last Name</label>
+                    <label for="last_name">Last Name:</label>
                     <input type="text" id="last_name" name="last_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Phone:</label>
                     <input type="text" id="phone" name="phone" required pattern="\d{10}" title="Phone number must be exactly 10 digits">
                 </div>
                 <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Address:</label>
                     <input type="text" id="address" name="address">
                 </div>
                 <div class="form-group">
-                    <label for="city">City</label>
+                    <label for="city">City:</label>
                     <input type="text" id="city" name="city" required>
                 </div>
                 <div class="form-group">
-                    <label for="state">State</label>
+                    <label for="state">State:</label>
                     <select id="state" name="state" required>
                         <option value="">Select a state</option>
                         <option value="AL">AL</option>
@@ -185,22 +185,29 @@ $conn->close();
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="zip_code">Zip Code</label>
+                    <label for="zip_code">Zip Code:</label>
                     <input type="text" id="zip_code" name="zip_code" required>
                 </div>
                 <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country">Country:</label>
                     <input type="text" id="country" name="country" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Create Username:</label>
                     <input type="text" id="username" name="username" required pattern=".{6,}" title="Username must be at least 6 characters long">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Create a Password:</label>
                     <input type="password" id="password" name="password" required title="Password must be at least 8 characters long and include at least 1 number">
                 </div>
-                <button type="submit" class="button">Register</button>
+                <label>
+          Confirm Password:
+          </label>
+          <label>
+          <input type="password" id="cpassword" name="cpassword"required>
+          <input type="checkbox" onclick="toggleCpaswd()">Show Password:<br><br>
+          </label>
+                <button type="submit" class="button">Register Now</button>
             </form>
         </div>
     </section>
