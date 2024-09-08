@@ -72,12 +72,12 @@ $conn->close();
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Attractions</a></li>
+                <li><a href="Construction.html">About Us</a></li>
+                <li><a href="Construction.html">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
-                <li><a href="#">Lodging</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">My Reservations</a></li>
+                <li><a href="Construction.html">Lodging</a></li>
+                <li><a href="Construction.html">Contact Us</a></li>
+                <li><a href="Construction.html">My Reservations</a></li>
                 <li class="active"><a href="#" class="login">Login / Register</a></li>
             </ul>
         </nav>
