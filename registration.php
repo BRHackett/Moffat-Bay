@@ -197,7 +197,7 @@ $conn->close();
                     <input type="text" id="username" name="username" required pattern=".{6,}" title="Username must be at least 6 characters long">
                 </div>
                 <div class="form-group">
-                    <label for="password">Create Password:</label>
+                    <label for="password">Create a Password:</label>
                     <input type="password" id="password" name="password" required title="Password must be at least 8 characters long and include at least 1 number">
                 </div>
                 <label>
