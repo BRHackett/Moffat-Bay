@@ -105,30 +105,40 @@ $conn->close();
             <?php endif; ?>
             <form action="registration.php" method="POST" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label for="first_name">First Name:</label>
-                    <input type="text" id="first_name" name="first_name" required>
+                    <label>
+          First Name:
+          </label>
+          <label>
+          <input type="text" id="first_name" name="first_name"required>
+          </label><br><br>
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" id="last_name" name="last_name" required>
+                    <label>
+          Last Name:
+          </label>
+          <label>
+          <input type="text" id="last_name" name="last_name"required><br>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label><br>
+
+          Address:
+          </label>
+          <label>
+          <input type="text" id="Address" name="Address"required><br>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" required pattern="\d{10}" title="Phone number must be exactly 10 digits">
+                    <label><br>
+         City:
+          </label>
+          <label>
+          <input type="text" id="City" name="City"required>
+          </label>
                 </div>
                 <div class="form-group">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address">
-                </div>
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="form-group">
+                    <label><br>
+
+            <div class="form-group">
                     <label for="state">State:</label>
                     <select id="state" name="state" required>
                         <option value="">Select a state</option>
@@ -182,49 +192,70 @@ $conn->close();
                         <option value="WV">WV</option>
                         <option value="WI">WI</option>
                         <option value="WY">WY</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="zip_code">Zip Code:</label>
-                    <input type="text" id="zip_code" name="zip_code" required>
-                </div>
-                <div class="form-group">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" name="country" required>
-                </div>
-                <div class="form-group">
-                    <label for="username">Create Username:</label>
-                    <input type="text" id="username" name="username" required pattern=".{6,}" title="Username must be at least 6 characters long">
-                </div>
-                <div class="form-group">
-                    <label for="password">Create a Password:</label>
-                    <input type="password" id="password" name="password" required title="Password must be at least 8 characters long and include at least 1 number">
+                    </select><br><br>
                 </div>
                 <label>
-          Confirm Password:
+         Zip Code:
           </label>
           <label>
-          <input type="password" id="cpassword" name="cpassword"required>
-          <input type="checkbox" onclick="toggleCpaswd()">Show Password:<br><br>
+          <input type="text" id="Zip Code" name="Zip Code"required>
+          </label><br><br>
+         
+         <label>
+         Country:
           </label>
-                <button type="submit" class="button">Register Now</button>
-            </form>
-        </div>
-    </section>
+          <label>
+          <input type="text" id="Country" name="Country"required>
+          </label><br><br>
+                
+                <div class="form-group">
+                    <label>
+          Create a Username:
+          </label>
+          <label>
+          <input type="text" id="email" name="email"required>
+          </label>
+          <label>
+          Create a Password:
+          </label>
+          <label>
+          <input type="password" id="password" name="password"required>
+          <input type="checkbox" onclick="togglePaswd()">Show Password<br><br>
+          </label>
 
-    <script>
-    function validateForm() {
-        var password = document.getElementById("password").value;
-        
-        // Check if the password is at least 8 characters long and contains at least one number
-        var passwordPattern = /^(?=.*[0-9]).{8,}$/;
-        
-        if (!passwordPattern.test(password)) {
-            alert("Password must be at least 8 characters long and include at least 1 number.");
-            return false;
-        }
-        return true;
+                </div>
+    
+        <div class="card-content">
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+          
+          <label>
+          <input type="submit" value="Register Now!">
+          </label>
+        </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/JavaScript">
+    // Change the input type so the user can see the entered password
+    function togglePaswd() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
+
+    // Change the input type so the user can see the entered confirmation password
+    function toggleCpaswd() {
+      var y = document.getElementById("cpassword");
+      if (y.type === "password") {
+        y.type = "text";
+      } else {
+        y.type = "password";
+      }
+    }
+    
     </script>
 </body>
 </html>
