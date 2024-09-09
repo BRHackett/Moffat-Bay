@@ -256,7 +256,6 @@ $conn->close();
       }
     }
     
-    </script>
     
     </script>
 </body>
