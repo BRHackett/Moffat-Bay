@@ -1,78 +1,61 @@
 <?php
-// Start session
-session_start();
+// Include the database configuration file to establish the connection
+include 'config.php';
 
-// Database connection
-$servername = "localhost";
-$username = "admin";
-$password = "pass";
-$dbname = "moffatbay";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Process form submission
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+    // Retrieve form data
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
+    $telephone = $_POST['telephone'];
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $state = $_POST['state'];
-    $zip_code = $_POST['zip_code'];
-    $country = $_POST['country'];
-    $username = $_POST['username'];
     $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
 
-    // Validate phone number (must be 10 digits)
-    if (!preg_match('/^\d{10}$/', $phone)) {
-        $error_message = "Phone number must be exactly 10 digits.";
-    }
-    // Validate username and password on the server side
-    elseif (strlen($username) < 6) {
-        $error_message = "Username must be at least 6 characters long.";
-    } elseif (!preg_match('/^(?=.*[0-9]).{8,}$/', $password)) {
-        $error_message = "Password must be at least 8 characters long and include at least 1 number.";
-    } else {
-        // Hash the password
-        $password_hash = hash("sha256", $password);
+    if ($password == $cpassword) {
+      // Query to check if the user exists
+      $query = "SELECT * FROM Guests WHERE first_name = '$first_name' OR last_name = '$last_name' OR telephone = '$telephone' AND email = '$email' OR password = '$password'";
 
-        // Insert into User table
-        $stmt = $conn->prepare("INSERT INTO User (first_name, last_name, email, phone, address, city, state, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssss", $first_name, $last_name, $email, $phone, $address, $city, $state, $zip_code, $country);
+      $result = $con->query($query);
 
-        if ($stmt->execute()) {
-            // Get the last inserted user_id
-            $user_id = $conn->insert_id;
+      // Check if the query executed successfully
+      if ($result) {
 
-            // Insert into Login table
-            $login_stmt = $conn->prepare("INSERT INTO Login (user_id, username, password_hash) VALUES (?, ?, ?)");
-            $login_stmt->bind_param("iss", $user_id, $username, $password_hash);
+          // Check if the user exists
+          if ($result->num_rows > 0) {
+            // User already exist, display an error message
+            echo "<script>alert('The information you entered already exist');</script>";
+          } else {
+            // Prepare SQL Query to Insert user data into the database
+            $query = "INSERT INTO Guests (first_name,last_name,telephone,email,password) VALUES ('$first_name','$last_name', '$telephone', '$email', '$password')";
 
-            if ($login_stmt->execute()) {
-                // Registration successful, redirect to login page
-                header("Location: login.php");
-                exit();
-            } else {
-                $error_message = "Error inserting into Login table.";
+            // Display at the top of Register page
+            // that the data was entered correctly.
+            if ($con->query($query)){
+              //printf("Record inserted succesfully");
+              echo "<script>alert('Record inserted succesfully');</script>";
             }
-            $login_stmt->close();
-        } else {
-            $error_message = "Error inserting into User table.";
-        }
-        $stmt->close();
+            // Display a message at the top of Register page
+            // that the data was NOT entered into the database.
+            if ($con->errno) {
+              printf("WARNING!!! Could not insert record into table: %s  WARNING!!! <br />", $con->error);
+            }
+          }
+      } else {
+          // Query execution failed, display an error message
+          echo "<script>alert('Error: " . $con->error . "');</script>";
+      }
+    } else {
+      // User password  do not match, display an error message
+      echo "<script>alert('WARNING!!! The passwords you entered did not match WARNING!!! ');</script>";
     }
 }
-$conn->close();
 ?>
 
+
+    </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -222,6 +205,13 @@ $conn->close();
           <input type="password" id="password" name="password"required>
           <input type="checkbox" onclick="togglePaswd()">Show Password<br><br>
           </label>
+          <label>
+          Confirm Password:
+          </label>
+          <label>
+          <input type="password" id="cpassword" name="cpassword"required>
+          <input type="checkbox" onclick="toggleCpaswd()">Show Password<br><br>
+          </label>
 
                 </div>
     
@@ -255,8 +245,5 @@ $conn->close();
         y.type = "password";
       }
     }
-    
-    
     </script>
-</body>
-</html>
+    
