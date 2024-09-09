@@ -257,5 +257,7 @@ $conn->close();
     }
     
     </script>
+    
+    </script>
 </body>
 </html>
