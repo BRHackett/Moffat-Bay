@@ -19,7 +19,7 @@ Date:
 </head>
 
 <body>
-    <!--Temporary: Navigation Bar ( Alex and Brandon, please let me know if this is ok and please feel free to add anything so I can finalize it tomorrow after work! Thank you-->
+    <!--Temporary: Navigation Bar ( Alex and Brandon, please let me know if this is ok and please feel free to add anything so I can finalize it tomorrow after work! Any changes on images please feel free. Thank you-->
 
     <?php
         readfile("shared/navigation.html");
