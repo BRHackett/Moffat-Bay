@@ -133,17 +133,13 @@ Date:
                 <form action="contactForm.php" method="post" id="contactForm">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
-
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
-
                 <label for="message">Message</label>
                 <textarea id="message" name="message" required></textarea>
-
                 <input type="submit" value="Send Message">
                 </form> 
             </div>
-
             <div class="ourinfo">
                 <h3>You may also reach us at: <a href="mailto:info@moffatbaylodge.com">info@moffatbaylodge.com</a> <br> or by phone at (562) 810-5815.</h3>
                 <br>
