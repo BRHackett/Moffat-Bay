@@ -25,9 +25,15 @@ Date:
             <ul>
                 <li><a href="index.html">Home</a></li> 
                 <li><a href="Construction.html">Lodging</a></li>
+<<<<<<< HEAD
                 <li class="active"><a href="#">About Us</a></li>
                 <li><a href="Construction.html">My Reservations</a></li>
                 <li class="active"><a href="login.php" class="login">Login / Register</a></li>
+=======
+                <li><a href="Construction.html">About Us</a></li>
+                <li><a href="Construction.html">My Reservations</a></li>
+                <li class="active"><a href="#" class="login">Login / Register</a></li>
+>>>>>>> c91713288c9cf0ca4b4c318642db06c8178b8cea
                 <li><a href="Construction.html">Attractions</a></li>
                 <li><a href="Construction.html">Contact Us</a></li>
             </ul>
