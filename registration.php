@@ -113,11 +113,11 @@ $conn->close();
                     <input type="text" id="last_name" name="last_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email">Email Address:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone:</label>
+                    <label for="phone">Phone Number:</label>
                     <input type="text" id="phone" name="phone" required pattern="\d{10}" title="Phone number must be exactly 10 digits">
                 </div>
                 <div class="form-group">
@@ -193,21 +193,18 @@ $conn->close();
                     <input type="text" id="country" name="country" required>
                 </div>
                 <div class="form-group">
-                    <label for="username">Create Username:</label>
+                    <label for="username">Create a Username:</label>
                     <input type="text" id="username" name="username" required pattern=".{6,}" title="Username must be at least 6 characters long">
                 </div>
                 <div class="form-group">
                     <label for="password">Create a Password:</label>
                     <input type="password" id="password" name="password" required title="Password must be at least 8 characters long and include at least 1 number">
                 </div>
-                <label>
-          Confirm Password:
-          </label>
-          <label>
-          <input type="password" id="cpassword" name="cpassword"required>
-          <input type="checkbox" onclick="toggleCpaswd()">Show Password:<br><br>
-          </label>
-                <button type="submit" class="button">Register Now</button>
+		<div class="form-group">
+                    <label for="cpassword">Confirm Password:</label>
+                    <input type="password" id="cpassword" name="cpassword" required title="Please confirm your password">
+                </div>
+                <button type="submit" class="button">Register Now!</button>
             </form>
         </div>
     </section>
@@ -215,6 +212,7 @@ $conn->close();
     <script>
     function validateForm() {
         var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("cpassword").value;
         
         // Check if the password is at least 8 characters long and contains at least one number
         var passwordPattern = /^(?=.*[0-9]).{8,}$/;
@@ -223,6 +221,13 @@ $conn->close();
             alert("Password must be at least 8 characters long and include at least 1 number.");
             return false;
         }
+        
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match. Please confirm your password.");
+            return false;
+        }
+
         return true;
     }
     </script>
