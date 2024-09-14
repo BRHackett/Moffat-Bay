@@ -52,7 +52,7 @@ $result = $stmt->get_result();
                 <li><a href="Construction.html">Lodging</a></li>
                 <li><a href="Construction.html">Contact Us</a></li>
                 <li class="active"><a href="my_reservations.php">My Reservations</a></li>
-                <li><a href="logout.php" class="login">Logout</a></li>
+                <li><a href="index.html" class="login">Logout</a></li>
             </ul>
         </nav>
     </header>

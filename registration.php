@@ -1,61 +1,78 @@
 <?php
-// Include the database configuration file to establish the connection
-include 'config.php';
+// Start session
+session_start();
 
-// Check if the form is submitted
+// Database connection
+$servername = "localhost";
+$username = "admin";
+$password = "pass";
+$dbname = "moffatbay";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    // Get form data
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
-    $telephone = $_POST['telephone'];
     $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $zip_code = $_POST['zip_code'];
+    $country = $_POST['country'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
 
-    if ($password == $cpassword) {
-      // Query to check if the user exists
-      $query = "SELECT * FROM Guests WHERE first_name = '$first_name' OR last_name = '$last_name' OR telephone = '$telephone' AND email = '$email' OR password = '$password'";
-
-      $result = $con->query($query);
-
-      // Check if the query executed successfully
-      if ($result) {
-
-          // Check if the user exists
-          if ($result->num_rows > 0) {
-            // User already exist, display an error message
-            echo "<script>alert('The information you entered already exist');</script>";
-          } else {
-            // Prepare SQL Query to Insert user data into the database
-            $query = "INSERT INTO Guests (first_name,last_name,telephone,email,password) VALUES ('$first_name','$last_name', '$telephone', '$email', '$password')";
-
-            // Display at the top of Register page
-            // that the data was entered correctly.
-            if ($con->query($query)){
-              //printf("Record inserted succesfully");
-              echo "<script>alert('Record inserted succesfully');</script>";
-            }
-            // Display a message at the top of Register page
-            // that the data was NOT entered into the database.
-            if ($con->errno) {
-              printf("WARNING!!! Could not insert record into table: %s  WARNING!!! <br />", $con->error);
-            }
-          }
-      } else {
-          // Query execution failed, display an error message
-          echo "<script>alert('Error: " . $con->error . "');</script>";
-      }
+    // Validate phone number (must be 10 digits)
+    if (!preg_match('/^\d{10}$/', $phone)) {
+        $error_message = "Phone number must be exactly 10 digits.";
+    }
+    // Validate username and password on the server side
+    elseif (strlen($username) < 6) {
+        $error_message = "Username must be at least 6 characters long.";
+    } elseif (!preg_match('/^(?=.*[0-9]).{8,}$/', $password)) {
+        $error_message = "Password must be at least 8 characters long and include at least 1 number.";
     } else {
-      // User password  do not match, display an error message
-      echo "<script>alert('WARNING!!! The passwords you entered did not match WARNING!!! ');</script>";
+        // Hash the password
+        $password_hash = hash("sha256", $password);
+
+        // Insert into User table
+        $stmt = $conn->prepare("INSERT INTO User (first_name, last_name, email, phone, address, city, state, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $first_name, $last_name, $email, $phone, $address, $city, $state, $zip_code, $country);
+
+        if ($stmt->execute()) {
+            // Get the last inserted user_id
+            $user_id = $conn->insert_id;
+
+            // Insert into Login table
+            $login_stmt = $conn->prepare("INSERT INTO Login (user_id, username, password_hash) VALUES (?, ?, ?)");
+            $login_stmt->bind_param("iss", $user_id, $username, $password_hash);
+
+            if ($login_stmt->execute()) {
+                // Registration successful, redirect to login page
+                header("Location: login.php");
+                exit();
+            } else {
+                $error_message = "Error inserting into Login table.";
+            }
+            $login_stmt->close();
+        } else {
+            $error_message = "Error inserting into User table.";
+        }
+        $stmt->close();
     }
 }
+$conn->close();
 ?>
 
-
-    </script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="Construction.html">About Us</a></li>
+                <li><a href="AboutUs.php">About Us</a></li>
                 <li><a href="Construction.html">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="Construction.html">Lodging</a></li>
                 <li><a href="Construction.html">Contact Us</a></li>
-                <li><a href="Construction.html">My Reservations</a></li>
+                <li><a href="login.php">My Reservations</a></li>
                 <li class="active"><a href="login.php" class="login">Login / Register</a></li>
             </ul>
         </nav>
@@ -88,22 +105,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
             <form action="registration.php" method="POST" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label>
-          First Name:
-          </label>
-          <label>
-          <input type="text" id="first_name" name="first_name"required>
-          </label><br><br>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required>
                 </div>
                 <div class="form-group">
-                    <label>
-          Last Name:
-          </label>
-          <label>
-          <input type="text" id="last_name" name="last_name"required><br>
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required>
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
                     <label for="email">Email Address:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
@@ -118,27 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" required>
-=======
-                    <label><br>
-
-          Address:
-          </label>
-          <label>
-          <input type="text" id="Address" name="Address"required><br>
                 </div>
                 <div class="form-group">
-                    <label><br>
-         City:
-          </label>
-          <label>
-          <input type="text" id="City" name="City"required>
-          </label>
->>>>>>> c91713288c9cf0ca4b4c318642db06c8178b8cea
-                </div>
-                <div class="form-group">
-                    <label><br>
-
-            <div class="form-group">
                     <label for="state">State:</label>
                     <select id="state" name="state" required>
                         <option value="">Select a state</option>
@@ -192,7 +182,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="WV">WV</option>
                         <option value="WI">WI</option>
                         <option value="WY">WY</option>
-<<<<<<< HEAD
                     </select>
                 </div>
                 <div class="form-group">
@@ -240,77 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         return true;
-=======
-                    </select><br><br>
-                </div>
-                <label>
-         Zip Code:
-          </label>
-          <label>
-          <input type="text" id="Zip Code" name="Zip Code"required>
-          </label><br><br>
-         
-         <label>
-         Country:
-          </label>
-          <label>
-          <input type="text" id="Country" name="Country"required>
-          </label><br><br>
-                
-                <div class="form-group">
-                    <label>
-          Create a Username:
-          </label>
-          <label>
-          <input type="text" id="email" name="email"required>
-          </label>
-          <label>
-          Create a Password:
-          </label>
-          <label>
-          <input type="password" id="password" name="password"required>
-          <input type="checkbox" onclick="togglePaswd()">Show Password<br><br>
-          </label>
-          <label>
-          Confirm Password:
-          </label>
-          <label>
-          <input type="password" id="cpassword" name="cpassword"required>
-          <input type="checkbox" onclick="toggleCpaswd()">Show Password<br><br>
-          </label>
-
-                </div>
-    
-        <div class="card-content">
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-          
-          <label>
-          <input type="submit" value="Register Now!">
-          </label>
-        </form>
-        </div>
-      </div>
-    </div>
-    <script type="text/JavaScript">
-    // Change the input type so the user can see the entered password
-    function togglePaswd() {
-      var x = document.getElementById("password");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
-    }
-
-    // Change the input type so the user can see the entered confirmation password
-    function toggleCpaswd() {
-      var y = document.getElementById("cpassword");
-      if (y.type === "password") {
-        y.type = "text";
-      } else {
-        y.type = "password";
-      }
->>>>>>> c91713288c9cf0ca4b4c318642db06c8178b8cea
     }
     </script>
-    
+</body>
+</html>
