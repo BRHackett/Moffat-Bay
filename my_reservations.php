@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id'];
 
 // Query to get the user's reservation details
-$stmt = $conn->prepare("SELECT reservation_date, start_date, end_date, status, payment_status, room_type, notes FROM Reservations WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT reservation_date, start_date, end_date, status, payment_status, room_id, notes FROM Reservations WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -81,7 +81,7 @@ $result = $stmt->get_result();
                                 <td><?= htmlspecialchars($row['end_date']); ?></td>
                                 <td><?= htmlspecialchars($row['status']); ?></td>
                                 <td><?= htmlspecialchars($row['payment_status']); ?></td>
-                                <td><?= htmlspecialchars($row['room_type']); ?></td>
+                                <td><?= htmlspecialchars($row['room_id']); ?></td>
                                 <td><?= htmlspecialchars($row['notes']); ?></td>
                             </tr>
                         <?php endwhile; ?>
