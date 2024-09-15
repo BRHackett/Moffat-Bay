@@ -1,12 +1,10 @@
 <?php
-// Start session
 session_start();
 
-// Check if the user is logged in
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    // If not logged in, redirect to login page
     header("Location: login.php");
-    exit();
+    exit;
 }
 
 // Database connection
@@ -25,6 +23,20 @@ if ($conn->connect_error) {
 
 // Get the logged-in user's ID
 $user_id = $_SESSION['user_id'];
+
+// Fetch the user's first and last name from the User table
+$sql = "SELECT first_name, last_name FROM User WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($first_name, $last_name);
+$stmt->fetch();
+
+// Store the first and last name in session variables
+$_SESSION['first_name'] = $first_name;
+$_SESSION['last_name'] = $last_name;
+
+$stmt->close();
 
 // Query to get the user's reservation details
 $stmt = $conn->prepare("SELECT reservation_date, start_date, end_date, status, payment_status, room_id, notes FROM Reservations WHERE user_id = ?");
@@ -50,16 +62,16 @@ $result = $stmt->get_result();
                 <li><a href="Construction.html">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="Construction.html">Lodging</a></li>
-                <li><a href="Construction.html">Contact Us</a></li>
+                <li><a href="room_reservation.php">Make a Reservation</a></li>
                 <li class="active"><a href="my_reservations.php">My Reservations</a></li>
-                <li><a href="index.html" class="login">Logout</a></li>
+                <li><a href="logout.php" class="login">Logout</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="reservations-section">
-        <div class="reservations-container">
-            <h1>My Reservations</h1>
+    <section class="reservation-hero">
+        <div class="reservation-hero-text">
+            <h1><?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>'s Reservations</h1>
             <?php if ($result->num_rows > 0): ?>
                 <table>
                     <thead>
