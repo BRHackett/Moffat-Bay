@@ -90,9 +90,9 @@ $conn->close();
                 <li><a href="Construction.html">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="Construction.html">Lodging</a></li>
-                <li><a href="Construction.html">Contact Us</a></li>
-                <li><a href="login.php">My Reservations</a></li>
-                <li class="active"><a href="login.php" class="login">Login / Register</a></li>
+                <li><a href="room_reservation.php">Make a Reservation</a></li>
+                <li><a href="my_reservations.php">My Reservations</a></li>
+                <li><a href="login.php" class="login">Login</a></li>
             </ul>
         </nav>
     </header>

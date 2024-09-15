@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
+
 // Database connection
 $servername = "localhost";
 $username = "admin";
@@ -19,6 +20,23 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Get the logged-in user's ID
+$user_id = $_SESSION['user_id'];
+
+// Fetch the user's first and last name from the User table
+$sql = "SELECT first_name, last_name FROM User WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($first_name, $last_name);
+$stmt->fetch();
+
+// Store the first and last name in session variables
+$_SESSION['first_name'] = $first_name;
+$_SESSION['last_name'] = $last_name;
+
+$stmt->close();
 
 // Fetch available room types from the Rooms table
 $sql = "SELECT room_id, room_category, room_type, available_rooms FROM Rooms WHERE available_rooms > 0";
@@ -68,11 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="index.html">Home</a></li>
                 <li><a href="AboutUs.php">About Us</a></li>
                 <li><a href="Construction.html">Attractions</a></li>
-                <li class="logo"><a href="#"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
-                <li class="active"><a href="lodging.php">Lodging</a></li>
-                <li><a href="Construction.html">Contact Us</a></li>
-                <li><a href="login.php">My Reservations</a></li>
-                <li><a href="login.php" class="login">Login / Register</a></li>
+                <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
+                <li><a href="Construction.html">Lodging</a></li>
+                <li class="active"><a href="#">Make a Reservation</a></li>
+                <li><a href="my_reservations.php">My Reservations</a></li>
+                <li><a href="logout.php" class="login">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -81,7 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section class="hero">
         <div class="hero-text">
             <h1>Book Your Stay</h1>
-            <p>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>! Please fill out the form to book your stay.</p>
+            <p>Welcome, <?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>! Please fill out the form to book your stay.</p>
+
             <form method="post" action="lodging.php">
                 <label for="start_date">Check-in Date:</label>
                 <input type="date" name="start_date" required><br>

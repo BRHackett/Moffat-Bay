@@ -61,7 +61,7 @@ nav ul .logo img {
 
 /* Hero section styles */
 .hero {
-    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-2.jpg?raw=true');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -101,10 +101,58 @@ nav ul .logo img {
     border-radius: 5px;
 }
 
+/* Reservations Hero section styles */
+.reservation-hero {
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/reservation-1.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Changed to min-height to adjust height based on content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+.reservation-hero-text {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    width: 90%; /* Adjust to fit the content */
+    max-width: 1200px; /* Increased max-width to accommodate wider table */
+    text-align: center;
+    overflow: auto; /* Allows scrolling if content overflows */
+}
+
+.reservation-hero-text h1 {
+    font-family: Cambria, serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.reservation-hero-text table {
+    width: 100%; /* Ensure the table fits within the container */
+    border-collapse: collapse;
+}
+
+.reservation-hero-text th, .reservation-hero-text td {
+    border: 1px solid #ccc;
+    padding: 15px; /* Increased padding to add space between table entries */
+    text-align: left;
+}
+
+.reservation-hero-text th {
+    background-color: #f0f0f0;
+}
+
+.reservation-hero-text p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
 
 /* CSS for the login page */
-
-/* Login section styles */
 .login-section {
     height: 100vh;
     display: flex;
@@ -219,4 +267,3 @@ nav ul .logo img {
     border: none;
     cursor: pointer;
 }
-

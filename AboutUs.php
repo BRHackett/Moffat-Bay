@@ -15,7 +15,7 @@ Date:
   <meta charset="UTF-8">
   <title>About Us - Moffat Bay Lodge and Marina</title>
   <link rel="icon" type="image/x-icon" href="/Moffat-Bay/shared/transparent-logo.png">
-  <link href="shared/aboutUs.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -26,11 +26,11 @@ Date:
                 <li><a href="index.html">Home</a></li>
                 <li class="active"><a href="#">About Us</a></li>
                 <li><a href="Construction.html">Attractions</a></li>
-                <li class="logo"><a href="#"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
+                <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="Construction.html">Lodging</a></li>
-                <li><a href="Construction.html">Contact Us</a></li>
-                <li><a href="login.php">My Reservations</a></li>
-                <li><a href="login.php" class="login">Login / Register</a></li>
+                <li><a href="room_reservation.php">Make a Reservation</a></li>
+                <li><a href="my_reservations.php">My Reservations</a></li>
+                <li><a href="index.html" class="login">Login/Register</a></li>
             </ul>
         </nav>
     </header>
@@ -59,7 +59,7 @@ Date:
         <p> 
             Experience refined dining experiences with fresh local ingredients and meticulously prepared dishes at our sophisticated and laid-back venues.
         </p>
-            <img src="shared/attrimages/fullchef.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/dining.jpg?raw=true">
 
         </div>
         <div class="secondpic">           
@@ -69,14 +69,14 @@ Date:
 
             </p>
 
-            <img src="shared/attrimages/indoor heated pool.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/indoor-pool.jpg?raw=true" alt="Indoor Pool at Moffat Bay Lodge">
 
         </div>
         <div class="thirdpic">
             <p> 
                 Expansive accommodations with various bed sizes for up to 5 guests, suitable for solo travelers, partners, friends, or family.
             </p>
-            <img src="shared/attrimages/sasha-kaunas-67-sOi7mVIk-unsplash.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/double-queen.jpg?raw=true" alt="Room at Moffat Bay Lodge">
             
         </div>
 
@@ -85,7 +85,7 @@ Date:
             Moffat Bay Lodge and Marina's Spa offers luxurious massages, facials, and body treatments by experienced therapists for relaxation.
 
 
-            <img src="shared/attrimages/spa.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/spa.jpg?raw=true" alt="Spa at Moffat Bay Lodge">
             
         </div>
 
@@ -93,7 +93,7 @@ Date:
             <p> 
             Moffat Bay Lodge and Marina offers a playground and kid-friendly activities for families, including arts and crafts and nature walks.
             </p>
-            <img src="shared/attrimages/playground.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/playground.jpg?raw=true" alt="Playground at Moffat Bay Lodge">
             
         </div>
 
@@ -101,7 +101,7 @@ Date:
             <p> 
             Moffat Bay Lodge and Marina offers a range of facilities for boating enthusiasts, including fuel docks, on-site stores, and skilled technicians.
 
-            <img src="shared/attrimages/marina1.jpg" alt="Moffat Bay Lodge and Marina">
+            <img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/marina.jpg?raw=true" alt="Marina at Moffat Bay Lodge">
             
         </div>
     </div>
