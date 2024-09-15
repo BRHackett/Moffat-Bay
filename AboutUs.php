@@ -14,9 +14,6 @@ Bellevue University
 </head>
 <body>
 
-
-
-
     <header>
         <nav>
             <ul>
@@ -25,7 +22,7 @@ Bellevue University
                 align="left" /><br>
                 <li><a href="index.html">Home</a></li> 
                 <li><a href="Construction.html">Lodging</a></li>
-                <li><a href="Construction.html">About Us</a></li>
+                <li><a href="AboutUs.phpl">About Us</a></li>
                 <li><a href="Construction.html">My Reservations</a></li> 
                 <li class="active"><a href="#" class="login">Login / Register</a></li>
                 <li><a href="Construction.html">Attractions</a></li>
@@ -42,7 +39,7 @@ Bellevue University
     <div class="our-story">
         <h1> About Us </h1>
         <p>Moffat Bay Lodge and Marina offers refined dining venues, a heated indoor pool, expansive accommodations, an opulent spa, and kid-friendly activities. The marina facilities have everything needed for a smooth and enjoyable boating trip. The lodge is located next to Joviedsa Island. Book now to experience what Moffat Bay has to offer.</p>
-        <a href="playground.jpg">
+        <a href="landing_header.jpg">
         <center><img src="images/landing_header.jpg" width="1500"/></center><br>
         <p1> </p1>
 
@@ -59,14 +56,8 @@ Bellevue University
         <a href="images/reservation-2.jpg"> Select your room feature 2</a><br>
         <a href="images/double-queen.jpg"> Select your room size (all rooms are spacious)</a><br>
 
-
-
-        </div>
-        <div class="thirdpic">
-            
-            
-        </div>
     </div>
+        
 
     <section id="location">
         <h3>Location</h3>
