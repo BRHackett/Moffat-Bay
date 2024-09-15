@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>Book Your Stay</h1>
             <p>Welcome, <?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>! Please fill out the form to book your stay.</p>
 
-            <form method="post" action="lodging.php">
+            <form method="post" action="room_reservation.php">
                 <label for="start_date">Check-in Date:</label>
                 <input type="date" name="start_date" required><br>
 
