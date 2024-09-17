@@ -267,3 +267,11 @@ nav ul .logo img {
     border: none;
     cursor: pointer;
 }
+
+.social-icons img {
+    width: 40px;    /* Set a fixed width for all icons */
+    height: 40px;   /* Set a fixed height for all icons */
+    object-fit: contain; /* Ensures the image scales while maintaining aspect ratio */
+    margin: 10px;
+    cursor: pointer;
+}

@@ -11,6 +11,7 @@ Bellevue University
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
 
@@ -18,15 +19,14 @@ Bellevue University
         <nav>
             <ul>
 
-                <img src="images/Moffat-Bay_Logo_thumbnail-1.png" width="200"
-                align="left" /><br>
-                <li><a href="index.html">Home</a></li> 
-                <li><a href="Construction.html">Lodging</a></li>
-                <li><a href="AboutUs.phpl">About Us</a></li>
-                <li><a href="Construction.html">My Reservations</a></li> 
-                <li class="active"><a href="#" class="login">Login / Register</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="AboutUs.php">About Us</a></li>
                 <li><a href="Construction.html">Attractions</a></li>
-                <li><a href="Construction.html">Contact Us</a></li>
+                <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
+                <li><a href="contact_us.php">Contact Us</a></li>
+                <li><a href="room_reservation.php">Make a Reservation</a></li>
+                <li><a href="my_reservations.php">My Reservations</a></li>
+                <li><a href="login.php" class="login">Login/Register</a></li>
             </ul>
         </nav>
     </header>
