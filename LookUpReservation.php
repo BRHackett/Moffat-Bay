@@ -1,8 +1,19 @@
 <?php
 $searched = false; // Initialize the variable
 
-// Include the database configuration file to establish the connection
-include 'config.php';
+// Include the database configuration file to establish the connection *We don't have a config file
+$servername = "localhost";
+$username = "admin";
+$password = "pass";
+$dbname = "moffatbay";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -24,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>CSD460 Capstone</title>
-    <link href="shared/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
 </head>
 
@@ -35,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <li><a href="index.html">Home</a></li>
                 <li class="active"><a href="AboutUs.php">About Us</a></li>
-                <li><a href="Construction.html">Attractions</a></li>
+                <li><a href="attractions.php">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
                 <li><a href="contact_us.php">Contact Us</a></li>
                 <li><a href="room_reservation.php">Make a Reservation</a></li>
