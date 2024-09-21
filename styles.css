@@ -159,7 +159,7 @@ nav ul .logo img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lookup.jpg?raw=true');
     background-size: cover;
     background-position: center;
 }
@@ -216,7 +216,7 @@ nav ul .logo img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lodging-1.jpg?raw=true');
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lookup.jpg?raw=true');
     background-size: cover;
     background-position: center;
 }
@@ -269,6 +269,7 @@ nav ul .logo img {
     cursor: pointer;
 }
 
+/* CSS for Contact us */
 .social-icons img {
     width: 40px;    /* Set a fixed width for all icons */
     height: 40px;   /* Set a fixed height for all icons */
@@ -276,7 +277,19 @@ nav ul .logo img {
     margin: 10px;
     cursor: pointer;
 }
+
+/* CSS for Attractions page */
 .attraction-item {
+    display: flex;
+    align-items: center; /* Vertically center the text */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid #ddd; /* Optional: Border for visibility */
+    padding: 10px;
+}
+
+/* CSS for Lodging */
+.room-type {
     display: flex;
     align-items: center; /* Vertically center the text */
     margin-bottom: 20px;
@@ -313,4 +326,183 @@ h3 {
 
 p {
     margin: 0;
+}
+
+/* CSS for Reservation Summary */
+/* Buttons */
+.button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.button.cancel {
+    background-color: #f44336; /* Red background for cancel button */
+}
+
+/* Reservation Summary Table */
+table {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+table th {
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+table td {
+    background-color: #fff;
+}
+
+.reservation-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* CSS for Lookup Section */
+.lookup-hero {
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/lookup.jpg'); /* Different background image */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+.lookup-hero-text {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    overflow: auto;
+}
+
+.lookup-hero-text h1 {
+    font-family: Cambria, serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.lookup-hero-text table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lookup-hero-text th, .lookup-hero-text td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: left;
+}
+
+.lookup-hero-text th {
+    background-color: #f0f0f0;
+}
+
+.lookup-hero-text p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.button.lookup {
+    background-color: #007BFF; /* Blue background for lookup button */
+    border: none;
+    cursor: pointer;
+}
+
+/* CSS for About Page */
+.about-hero {
+    background-image: url('https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/landing_header.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+.about-section {
+    padding: 20px;
+}
+
+.about-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    padding: 10px;
+}
+
+.about-item .image-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.about-item .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-item .description {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.about-item h3 {
+    font-family: Cambria, serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.about-item p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #555;
+}
+
+.call-to-action {
+    background-color: #f0f0f0;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.call-to-action h3 {
+    font-family: Cambria, serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.call-to-action .button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
 }

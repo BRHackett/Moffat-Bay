@@ -187,3 +187,46 @@ VALUES
 UPDATE Reservations
 SET status = 'Cancelled', payment_status = 'Refunded'
 WHERE reservation_id = 3;
+
+-- Add Description to Rooms
+ALTER TABLE Rooms ADD COLUMN description TEXT;
+
+-- Update the description for Standard - Single King
+UPDATE Rooms 
+SET description = 'Guests: 1-2; 115.00 per night' 
+WHERE room_category = 'Standard' AND room_type = 'Single King';
+
+-- Update the description for Standard - Single Queen
+UPDATE Rooms 
+SET description = 'Guests: 1-2; 115.00 per night' 
+WHERE room_category = 'Standard' AND room_type = 'Single Queen';
+
+-- Update the description for Standard - Double Queen
+UPDATE Rooms 
+SET description = 'Guests: 1-5; 1-2 guests are 115.00 per night; 3-5 guests are 150.00 per night' 
+WHERE room_category = 'Standard' AND room_type = 'Double Queen';
+
+-- Update the description for Deluxe - Single King
+UPDATE Rooms 
+SET description = 'Guests: 1-2; 150.00 per night' 
+WHERE room_category = 'Deluxe' AND room_type = 'Single King';
+
+-- Update the description for Deluxe - Single Queen
+UPDATE Rooms 
+SET description = 'Guests: 1-2; 150.00 per night' 
+WHERE room_category = 'Deluxe' AND room_type = 'Single Queen';
+
+-- Update the description for Deluxe - Double Queen
+UPDATE Rooms 
+SET description = 'Guests: 1-5; 1-2 guests are 150.00 per night; 3-5 guests are 175.00 per night' 
+WHERE room_category = 'Deluxe' AND room_type = 'Double Queen';
+
+-- Update the description for Suite - 1 Room
+UPDATE Rooms 
+SET description = 'Guests: 1-3; 200.00 per night' 
+WHERE room_category = 'Suite' AND room_type = '1 Room';
+
+-- Update the description for Suite - 2 Room
+UPDATE Rooms 
+SET description = 'Guests: 1-5; 250.00 per night' 
+WHERE room_category = 'Suite' AND room_type = '2 Room';
