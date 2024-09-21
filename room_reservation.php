@@ -1,74 +1,45 @@
 <?php
 session_start();
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Database connection
 $servername = "localhost";
 $username = "admin";
 $password = "pass";
 $dbname = "moffatbay";
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the logged-in user's ID
 $user_id = $_SESSION['user_id'];
+$room_id = null;
 
-// Fetch the user's first and last name from the User table
-$sql = "SELECT first_name, last_name FROM User WHERE user_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$stmt->bind_result($first_name, $last_name);
-$stmt->fetch();
-
-// Store the first and last name in session variables
-$_SESSION['first_name'] = $first_name;
-$_SESSION['last_name'] = $last_name;
-
-$stmt->close();
-
-// Fetch available room types from the Rooms table
-$sql = "SELECT room_id, room_category, room_type, available_rooms FROM Rooms WHERE available_rooms > 0";
-$result = mysqli_query($conn, $sql);
-
-// Handle reservation submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
     $room_id = $_POST['room_id'];
     $notes = $_POST['notes'];
     
-    // Set the current date as the reservation date
-    $reservation_date = date("Y-m-d");
-
-    // Default values for status and payment_status
-    $status = 'Pending';
-    $payment_status = 'Unpaid';
-
-    // Insert the reservation into the Reservations table
-    $sql = "INSERT INTO Reservations (user_id, reservation_date, start_date, end_date, status, payment_status, room_id, notes)
-            VALUES ('$user_id', '$reservation_date', '$start_date', '$end_date', '$status', '$payment_status', '$room_id', '$notes')";
+    $_SESSION['reservation_data'] = array(
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'room_id' => $room_id,
+        'notes' => $notes
+    );
     
-    if (mysqli_query($conn, $sql)) {
-        // If the reservation is successful, redirect to my_reservations.php
-        header("Location: my_reservations.php");
-        exit;
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
+    header("Location: reservation_summary.php");
+    exit;
 }
+
+// Fetch available rooms
+$sql = "SELECT room_id, room_category, room_type, available_rooms, description FROM Rooms WHERE available_rooms > 0";
+$result = mysqli_query($conn, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -85,12 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="AboutUs.php">About Us</a></li>
-                <li><a href="Construction.html">Attractions</a></li>
+                <li><a href="attractions.php">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
-                <li><a href="contact_us.php">Contact Us</a></li>
-                <li class="active"><a href="room_reservation.php">Make a Reservation</a></li>
+                <li class="active"><a href="room_reservation.php">Lodging</a></li>
                 <li><a href="my_reservations.php">My Reservations</a></li>
-                <li><a href="login.php" class="login">Login/Register</a></li>
+                <li><a href="contact_us.php">Contact Us</a></li>
+                <li><a href="logout.php" class="login">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -129,5 +100,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </section>
+
+    <!-- Room Types Section -->
+    <section>
+    <?php
+    // Define an associative array to map room types to specific images
+    $room_images = array(
+        'Standard - Single King' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/reservation-2.jpg?raw=true',
+        'Standard - Single Queen' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/single-queen.jpg?raw=true',
+        'Standard - Double Queen' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/double-queen.jpg?raw=true',
+        'Deluxe - Single King' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/reservation-1.jpg?raw=true',
+        'Deluxe - Single Queen' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/single-deluxe-queen.jpg?raw=true',
+        'Deluxe - Double Queen' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/deluxe-2-Queen.jpg?raw=true',
+        'Suite - 1 Room' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/suite.jpg?raw=true',
+        'Suite - 2 Room' => 'https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/2-suite.jpg?raw=true',
+    );
+
+    // Re-fetch available room types for the display
+    $sql = "SELECT room_category, room_type, available_rooms, description FROM Rooms WHERE available_rooms > 0";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0): ?>
+        <h2>Available Room Types</h2>
+        <?php while ($room = mysqli_fetch_assoc($result)): 
+            // Create a key to map to the image in the associative array
+            $room_key = $room['room_category'] . ' - ' . $room['room_type'];
+            // Check if the room type exists in the image array, else use a default image
+            $room_image = isset($room_images[$room_key]) ? $room_images[$room_key] : 'https://example.com/images/default_room.jpg';
+        ?>
+            <div class="room-type">
+                <div class="image-container">
+                    <!-- Use the image URL from the associative array -->
+                    <img src="<?= htmlspecialchars($room_image); ?>" alt="<?= htmlspecialchars($room_key); ?>">
+                </div>
+                <div class="description">
+                    <h3><?= htmlspecialchars($room_key); ?></h3>
+                    <p>Available rooms: <?= htmlspecialchars($room['available_rooms']); ?></p>
+                    <p><?= htmlspecialchars($room['description']); ?></p> <!-- Display description from the database -->
+                </div>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No rooms available at the moment.</p>
+    <?php endif; ?>
+</section>
+
 </body>
 </html>
+
+<?php
+// Close the database connection
+mysqli_close($conn);
+?>

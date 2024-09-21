@@ -38,6 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Successful login, set session variables
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username_input;
+
+            // Fetch first name and last name from User table
+            $user_stmt = $conn->prepare("SELECT first_name, last_name FROM User WHERE user_id = ?");
+            $user_stmt->bind_param("i", $user_id);
+            $user_stmt->execute();
+            $user_stmt->bind_result($first_name, $last_name);
+            if ($user_stmt->fetch()) {
+                // Set first name and last name in session
+                $_SESSION['first_name'] = $first_name;
+                $_SESSION['last_name'] = $last_name;
+            }
+            $user_stmt->close();
             
             // Update last login timestamp
             $update_stmt = $conn->prepare("UPDATE Login SET last_login = NOW() WHERE user_id = ?");
@@ -64,20 +76,20 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moffat Bay Lodge - Login</title>
+    <title>Login - Moffat Bay Lodge</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-            <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="AboutUs.php">About Us</a></li>
                 <li><a href="attractions.php">Attractions</a></li>
                 <li class="logo"><a href="index.html"><img src="https://github.com/BRHackett/Moffat-Bay/blob/main/src/images/Moffat-Bay_Logo.png?raw=true" alt="Moffat Bay Lodge Logo"></a></li>
-                <li><a href="contact_us.php">Contact Us</a></li>
-                <li><a href="room_reservation.php">Make a Reservation</a></li>
+                <li><a href="room_reservation.php">Lodging</a></li>
                 <li><a href="my_reservations.php">My Reservations</a></li>
+                <li><a href="contact_us.php">Contact Us</a></li>
                 <li class="active"><a href="login.php" class="login">Login/Register</a></li>
             </ul>
         </nav>
