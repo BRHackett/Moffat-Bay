@@ -24,6 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $end_date = $_POST['end_date'];
     $room_id = $_POST['room_id'];
     $notes = $_POST['notes'];
+
+    // Validate the dates (future check-in date and check-out date being at least one day after check-in)
+    $current_date = date("Y-m-d");
+    if ($start_date <= $current_date) {
+        echo "Error: Check-in date must be a future date.";
+        exit;
+    }
+
+    if ($end_date <= $start_date) {
+        echo "Error: Check-out date must be at least one day after check-in.";
+        exit;
+    }
+
+
     
     $_SESSION['reservation_data'] = array(
         'start_date' => $start_date,
@@ -49,6 +63,57 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lodging - Moffat Bay Lodge</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Ensure the user selects a future check-in date and the check-out date is at least one day after check-in
+        function validateDates() {
+            var checkInDate = document.getElementsByName('start_date')[0].value;
+            var checkOutDate = document.getElementsByName('end_date')[0].value;
+
+            var checkIn = new Date(checkInDate);
+            var checkOut = new Date(checkOutDate);
+            var today = new Date();
+
+            if (checkIn <= today) {
+                alert("Check-in date must be in the future.");
+                return false;
+            }
+
+            if (checkOut <= checkIn) {
+                alert("Check-out date must be at least one day after check-in.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Set the minimum check-in date to today (for future dates only)
+        window.onload = function() {
+    // Get today's date in YYYY-MM-DD format
+    var today = new Date().toISOString().split('T')[0];
+
+    // Set the 'min' attribute for the start_date and end_date to today
+    var startDateInput = document.getElementsByName('start_date')[0];
+    var endDateInput = document.getElementsByName('end_date')[0];
+
+    startDateInput.setAttribute('min', today);
+    endDateInput.setAttribute('min', today);
+
+    // Add event listener to update the end_date when the start_date is changed
+    startDateInput.addEventListener('change', function() {
+        var selectedStartDate = new Date(this.value);
+        selectedStartDate.setDate(selectedStartDate.getDate() + 1); 
+
+        // Set the min attribute for end_date to the day after the selected start_date
+        var minEndDate = selectedStartDate.toISOString().split('T')[0];
+        endDateInput.setAttribute('min', minEndDate);
+
+        // Clear the end_date input value if it's earlier than the new min date
+        if (endDateInput.value && new Date(endDateInput.value) < selectedStartDate) {
+            endDateInput.value = ''; 
+        }
+    });
+}
+    </script>
 </head>
 <body>
     <header>
